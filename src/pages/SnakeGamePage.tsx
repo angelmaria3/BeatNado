@@ -12,13 +12,13 @@ type WeatherFood = {
 
 const GRID_SIZE = 20;
 const CANVAS_SIZE = 400;
-const TARGET_SCORE = 50;
+const TARGET_SCORE = 25;
 
 const WEATHER_FOODS = [
-  { type: '☀' as const, points: 10, color: 'hsl(var(--sunny))' },
-  { type: '🌧' as const, points: 15, color: 'hsl(var(--rainy))' },
-  { type: '❄' as const, points: 20, color: 'hsl(var(--cold))' },
-  { type: '🌩' as const, points: 25, color: 'hsl(var(--stormy))' },
+  { type: '☀' as const, points: 5, color: 'hsl(var(--sunny))' },
+  { type: '🌧' as const, points: 5, color: 'hsl(var(--rainy))' },
+  { type: '❄' as const, points: 5, color: 'hsl(var(--cold))' },
+  { type: '🌩' as const, points: 5, color: 'hsl(var(--stormy))' },
 ];
 
 const SnakeGamePage = () => {

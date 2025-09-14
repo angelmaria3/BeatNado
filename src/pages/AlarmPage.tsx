@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,10 +8,12 @@ import alarmBg from "@/assets/alarm-bg.jpg";
 
 const AlarmPage = () => {
   const navigate = useNavigate();
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [alarmTime, setAlarmTime] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isAlarmActive, setIsAlarmActive] = useState(false);
   const [alarmTriggered, setAlarmTriggered] = useState(false);
+  const [countdown, setCountdown] = useState(30);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,17 +34,48 @@ const AlarmPage = () => {
         if (now >= alarmDate && !alarmTriggered) {
           setAlarmTriggered(true);
           setIsAlarmActive(false);
-          // Navigate to snake game after 2 seconds
-          setTimeout(() => {
-            navigate('/game');
-          }, 2000);
+          setCountdown(30);
+          
+          // Request notification permission and show notification
+          if (Notification.permission === 'granted') {
+            new Notification('⏰ Wake Up!', {
+              body: 'Your alarm is ringing! Complete the Snake Challenge to stop it.',
+              icon: '/favicon.ico'
+            });
+          } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+              if (permission === 'granted') {
+                new Notification('⏰ Wake Up!', {
+                  body: 'Your alarm is ringing! Complete the Snake Challenge to stop it.',
+                  icon: '/favicon.ico'
+                });
+              }
+            });
+          }
+          
+          // Play alarm sound
+          if (audioRef.current) {
+            audioRef.current.play().catch(e => console.log('Audio play failed:', e));
+          }
         }
       };
 
       const interval = setInterval(checkAlarm, 1000);
       return () => clearInterval(interval);
     }
-  }, [alarmTime, isAlarmActive, alarmTriggered, navigate]);
+  }, [alarmTime, isAlarmActive, alarmTriggered]);
+
+  // Countdown timer for alarm
+  useEffect(() => {
+    if (alarmTriggered && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(prev => prev - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (alarmTriggered && countdown === 0) {
+      navigate('/game');
+    }
+  }, [alarmTriggered, countdown, navigate]);
 
   const handleSetAlarm = () => {
     if (alarmTime) {
@@ -54,6 +87,11 @@ const AlarmPage = () => {
   const handleStopAlarm = () => {
     setIsAlarmActive(false);
     setAlarmTriggered(false);
+    setCountdown(30);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
   };
 
   const formatTime = (date: Date) => {
@@ -105,9 +143,18 @@ const AlarmPage = () => {
                 <h2 className="text-2xl font-bold text-secondary neon-text">
                   🚨 WAKE UP! 🚨
                 </h2>
+                <div className="text-4xl font-bold text-primary neon-text my-4">
+                  {countdown}
+                </div>
                 <p className="text-foreground mt-2">
-                  Get ready for the Snake Challenge!
+                  Starting Snake Challenge in {countdown} seconds...
                 </p>
+                <Button
+                  onClick={() => navigate('/game')}
+                  className="mt-4 retro-button bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                >
+                  Start Challenge Now!
+                </Button>
               </div>
             )}
 
@@ -168,6 +215,15 @@ const AlarmPage = () => {
           </div>
         </Card>
       </div>
+      
+      {/* Hidden audio element for alarm sound */}
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+      >
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmrmBCl+zPLZizoIGGS57OihUgwOUarm7qhmHhk2jdXvw2IlBSuG0fPfgTqA6" type="audio/wav" />
+      </audio>
     </div>
   );
 };
