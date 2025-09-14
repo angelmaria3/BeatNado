@@ -95,12 +95,14 @@ const AlarmPage = () => {
   };
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-US', {
+    const formatted = date.toLocaleTimeString('en-US', {
       hour12: false,
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit'
     });
+    console.log('Formatted time:', formatted);
+    return formatted;
   };
 
   return (

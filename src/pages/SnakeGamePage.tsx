@@ -59,6 +59,8 @@ const SnakeGamePage = () => {
 
   const gameLoop = useCallback(() => {
     if (!gameStarted || gameOver) return;
+    
+    console.log('Game loop running, direction:', direction);
 
     setSnake(currentSnake => {
       const newSnake = [...currentSnake];
@@ -66,6 +68,8 @@ const SnakeGamePage = () => {
       
       head.x += direction.x;
       head.y += direction.y;
+
+      console.log('Snake head position:', head);
 
       if (checkCollision(head, newSnake)) {
         setGameOver(true);
@@ -229,7 +233,7 @@ const SnakeGamePage = () => {
     setGameOver(false);
     setScore(0);
     setSnake([{ x: 10, y: 10 }]);
-    setDirection({ x: 0, y: -1 });
+    setDirection({ x: 1, y: 0 }); // Start moving right
     setWeatherCollected({});
     setFood(generateFood());
   };
@@ -239,7 +243,7 @@ const SnakeGamePage = () => {
     setGameOver(false);
     setScore(0);
     setSnake([{ x: 10, y: 10 }]);
-    setDirection({ x: 0, y: -1 });
+    setDirection({ x: 1, y: 0 }); // Reset to moving right
     setWeatherCollected({});
     setFood(null);
   };
