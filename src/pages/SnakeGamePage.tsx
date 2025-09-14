@@ -104,13 +104,13 @@ const SnakeGamePage = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Clear canvas with matrix-style background
-    ctx.fillStyle = 'hsl(var(--game-background))';
+    // Clear canvas with dark background
+    ctx.fillStyle = '#001100';
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
     // Draw grid
-    ctx.strokeStyle = 'hsl(var(--game-primary) / 0.2)';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#003300';
+    ctx.lineWidth = 0.5;
     for (let i = 0; i <= CANVAS_SIZE; i += GRID_SIZE) {
       ctx.beginPath();
       ctx.moveTo(i, 0);
@@ -121,17 +121,32 @@ const SnakeGamePage = () => {
     }
 
     // Draw snake with glow effect
+    ctx.shadowBlur = 0;
     snake.forEach((segment, index) => {
       const isHead = index === 0;
-      ctx.shadowColor = 'hsl(var(--game-primary))';
-      ctx.shadowBlur = isHead ? 20 : 10;
-      ctx.fillStyle = isHead ? 'hsl(var(--game-primary))' : 'hsl(var(--game-secondary))';
+      
+      // Set glow effect
+      ctx.shadowColor = isHead ? '#00ff00' : '#00aa00';
+      ctx.shadowBlur = isHead ? 15 : 8;
+      
+      // Set snake color - bright green for visibility
+      ctx.fillStyle = isHead ? '#00ff00' : '#00aa00';
       
       ctx.fillRect(
-        segment.x * GRID_SIZE + 2,
-        segment.y * GRID_SIZE + 2,
-        GRID_SIZE - 4,
-        GRID_SIZE - 4
+        segment.x * GRID_SIZE + 1,
+        segment.y * GRID_SIZE + 1,
+        GRID_SIZE - 2,
+        GRID_SIZE - 2
+      );
+      
+      // Add border for better visibility
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(
+        segment.x * GRID_SIZE + 1,
+        segment.y * GRID_SIZE + 1,
+        GRID_SIZE - 2,
+        GRID_SIZE - 2
       );
     });
 
