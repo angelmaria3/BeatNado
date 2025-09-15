@@ -2,72 +2,116 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/e91b755f-7ff2-4ae6-90bd-fb196b0828bb
+**URL**: [https://lovable.dev/projects/e91b755f-7ff2-4ae6-90bd-fb196b0828bb](https://beatnado.lovable.app/alarm)
 
-## How can I edit this code?
+<APP NAME>
 
-There are several ways of editing your application.
+Snake Alarm is a gamified alarm clock app where you must play Snake to stop the alarm. No more endless snoozing—the only way to silence it is by winning the game. Along the way, the Snake eats weather icons that not only show the current weather but also trigger musical notes, making every morning a unique combination of fun, weather, and sound.
 
-**Use Lovable**
+🔑 How the App Works (Step-by-Step)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e91b755f-7ff2-4ae6-90bd-fb196b0828bb) and start prompting.
+Alarm Setup
 
-Changes made via Lovable will be committed automatically to this repo.
+User sets an alarm just like in any normal alarm app.
 
-**Use your preferred IDE**
+Optionally, they can adjust the difficulty:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Easy: Small target score to stop the alarm.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Normal: Moderate target score.
 
-Follow these steps:
+Hard: High target score (perfect for heavy sleepers).
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+User can enable “Music Mode” (notes triggered per icon eaten).
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Alarm Rings
 
-# Step 3: Install the necessary dependencies.
-npm i
+At the set time, the alarm starts ringing with a default or user-chosen tone.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Unlike normal alarms, there is no snooze button—instead, a “Play Snake” button appears.
 
-**Edit a file directly in GitHub**
+Snake Challenge
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The game launches instantly.
 
-**Use GitHub Codespaces**
+Snake starts moving, and the goal is to eat enough weather icons to reach the target score.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The weather icons represent the current real-world weather (pulled from the API):
 
-## What technologies are used for this project?
+☀ Sunny → Yellow sun icons
 
-This project is built with:
+🌧 Rainy → Blue raindrop icons
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+❄ Snowy → White snowflake icons
 
-## How can I deploy this project?
+🌩 Stormy → Lightning bolt icons
 
-Simply open [Lovable](https://lovable.dev/projects/e91b755f-7ff2-4ae6-90bd-fb196b0828bb) and click on Share -> Publish.
+Icons appear randomly across the grid, but the type of icon depends on today’s weather.
 
-## Can I connect a custom domain to my Lovable project?
+Music Twist
 
-Yes, you can!
+Every icon eaten plays a note or sound effect.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+For example:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Sun (☀) → Bright chime note
+
+Rain (🌧) → Soft water drop sound
+
+Snow (❄) → Gentle bell tone
+
+Thunder (🌩) → Drum or bass beat
+
+As the snake keeps eating, these notes form a melody—so every wake-up session generates a tiny piece of music.
+
+Alarm Stops
+
+Once the target score is reached, the alarm stops.
+
+If the player crashes into themselves or the wall, the alarm keeps ringing until they try again.
+
+Result: You’re fully awake, both mentally and physically!
+
+🚀 Features
+
+🎮 Gamified Alarm → Beat Snake to stop the sound.
+
+🌦 Weather-Linked Gameplay → Icons represent the real-time weather.
+
+🎵 Musical Interaction → Notes play with each icon eaten.
+
+⚡ Adaptive Difficulty → Choose Easy, Normal, or Hard mode.
+
+📊 Wake-Up Stats → Tracks how long it took to beat the alarm.
+
+📴 Offline Support → If no internet, default icons + sounds still appear.
+
+✨ Why Snake Alarm?
+
+No Lazy Snoozing → You have to play your way awake.
+
+Weather Awareness → See today’s forecast without checking your phone.
+
+Fun Mornings → Start your day with a mini-game and melody.
+
+Nostalgia Factor → Snake is simple, familiar, and universally loved.
+
+📱 Example Morning Flow
+
+⏰ 7:00 AM – Alarm goes off.
+
+📱 Screen shows: “Play Snake to Stop Alarm.”
+
+🐍 You start playing Snake.
+
+🌦 Today’s weather is Rainy → Snake eats 🌧 icons.
+
+🎵 Every raindrop eaten makes a soft piano-water drop sound.
+
+🔔 After eating 15 icons, target score is reached. Alarm silences.
+
+✅ You’re awake, aware it’s raining outside, and slightly entertained instead of annoyed.
+
+📜 License
+
+MIT License – Open for free use, modification, and creative mashups.
