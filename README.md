@@ -4,7 +4,7 @@
 
 <APP NAME>
 
-Snake Alarm is a gamified alarm clock app where you must play Snake to stop the alarm. No more endless snoozing—the only way to silence it is by winning the game. Along the way, the Snake eats weather icons that not only show the current weather but also trigger musical notes, making every morning a unique combination of fun, weather, and sound.
+BeatNado is a gamified alarm clock app where you must play Snake to stop the alarm. No more endless snoozing—the only way to silence it is by winning the game. Along the way, the Snake eats weather icons that not only show the current weather but also trigger musical notes, making every morning a unique combination of fun, weather, and sound.
 
 🔑 How the App Works (Step-by-Step)
 
