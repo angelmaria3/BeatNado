@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: [https://lovable.dev/projects/e91b755f-7ff2-4ae6-90bd-fb196b0828bb](https://beatnado.lovable.app/alarm)
+**URL**: https://beatnado.lovable.app/alarm
 
 <APP NAME>
 
